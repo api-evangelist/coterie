@@ -1,0 +1,299 @@
+{
+  "info": {
+    "name": "Coterie Commercial Insurance API",
+    "description": {
+      "content": "REST API for Coterie's small-business commercial insurance: applications, bindable quotes, bind/issue policies, industry/NAICS lookup, documents, and webhooks.",
+      "type": "text/plain"
+    },
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.coterieinsurance.com/v1"
+    },
+    {
+      "key": "bearerToken",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Applications",
+      "item": [
+        {
+          "name": "Create a commercial application.",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/commercial/applications",
+              "host": ["{{baseUrl}}"],
+              "path": ["commercial", "applications"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"businessName\": \"<string>\",\n  \"contactEmail\": \"<email>\",\n  \"industryId\": 0,\n  \"akHash\": \"<string>\",\n  \"grossAnnualSales\": 0,\n  \"numEmployees\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Retrieve a commercial application.",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/commercial/applications/{{applicationId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["commercial", "applications", "{{applicationId}}"]
+            }
+          }
+        },
+        {
+          "name": "Update a commercial application.",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/commercial/applications/{{applicationId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["commercial", "applications", "{{applicationId}}"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"businessName\": \"<string>\",\n  \"industryId\": 0,\n  \"akHash\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Quotes",
+      "item": [
+        {
+          "name": "Create a bindable quote.",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/commercial/quotes",
+              "host": ["{{baseUrl}}"],
+              "path": ["commercial", "quotes"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"applicationId\": \"<string>\",\n  \"endorsementPackages\": [\"BOP\", \"GL\", \"PL\", \"WC\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Retrieve a quote.",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/commercial/quotes/{{quoteId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["commercial", "quotes", "{{quoteId}}"]
+            }
+          }
+        },
+        {
+          "name": "List underwriting questions for a quote.",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/commercial/quotes/{{quoteId}}/underwriting-questions",
+              "host": ["{{baseUrl}}"],
+              "path": ["commercial", "quotes", "{{quoteId}}", "underwriting-questions"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Policies",
+      "item": [
+        {
+          "name": "Bind a quote into a policy.",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/commercial/policies",
+              "host": ["{{baseUrl}}"],
+              "path": ["commercial", "policies"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quoteId\": \"<string>\",\n  \"agencyId\": \"<string>\",\n  \"stripePaymentToken\": \"<string>\",\n  \"effectiveDate\": \"2026-06-25\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Retrieve a policy.",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/commercial/policies/{{policyId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["commercial", "policies", "{{policyId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Industry",
+      "item": [
+        {
+          "name": "Search industry / NAICS classifications.",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/industry-classifications?description=<string>",
+              "host": ["{{baseUrl}}"],
+              "path": ["industry-classifications"],
+              "query": [
+                {
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "key": "naicsCode",
+                  "value": "<string>",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Documents",
+      "item": [
+        {
+          "name": "Retrieve documents for a policy.",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/commercial/policies/{{policyId}}/documents",
+              "host": ["{{baseUrl}}"],
+              "path": ["commercial", "policies", "{{policyId}}", "documents"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Webhooks",
+      "item": [
+        {
+          "name": "List webhook subscriptions.",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/webhooks",
+              "host": ["{{baseUrl}}"],
+              "path": ["webhooks"]
+            }
+          }
+        },
+        {
+          "name": "Create a webhook subscription.",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/webhooks",
+              "host": ["{{baseUrl}}"],
+              "path": ["webhooks"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\",\n  \"eventType\": \"policy.issued\",\n  \"active\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete a webhook subscription.",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/webhooks/{{webhookId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["webhooks", "{{webhookId}}"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

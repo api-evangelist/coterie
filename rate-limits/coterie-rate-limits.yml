@@ -1,0 +1,53 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Coterie Insurance
+providerId: coterie
+created: '2026-06-25'
+modified: '2026-06-25'
+reconciled: false
+tags:
+- Insurance
+- Commercial Insurance
+- Small Business
+- Embedded Insurance
+- Insurtech
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Coterie's partner documentation states there are no call-volume limits for
+  testing or production use of the Commercial Insurance API. The API is gated by
+  partner appointment and per-key authentication (Publishable and Secret keys)
+  rather than by published per-key rate limits. Specific throttling thresholds,
+  burst limits, or concurrency caps are not publicly documented and are not
+  reconciled in this artifact.
+notes: >-
+  Confirm any operational throttling, retry guidance, and Retry-After behavior
+  with your Coterie Integration Manager during reconciliation. Standard HTTP 429
+  Too Many Requests handling should be assumed defensively even though no
+  numeric limit is published.
+sources:
+- https://docs.coterieinsurance.com/
+- https://explore.coterieinsurance.com/partner-faqs
+responseCodes:
+  throttled: 429
+limits:
+- name: API Call Volume
+  scope: account
+  metric: requests
+  limit: no documented limit
+  notes: Coterie states no call-volume limits for testing or production; verify on reconciliation.
+- name: Sandbox Call Volume
+  scope: account
+  metric: requests
+  limit: no documented limit
+  notes: Sandbox is provided for integration testing without published volume caps.
+policies:
+- name: Partner Gating
+  description: Access is controlled by partner appointment and per-key authentication rather than published rate tiers.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After if a 429 is returned.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

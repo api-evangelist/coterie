@@ -1,0 +1,166 @@
+aid: coterie
+url: https://raw.githubusercontent.com/api-evangelist/coterie/refs/heads/main/apis.yml
+name: Coterie Insurance
+kind: company
+description: Coterie Insurance is a technology-first commercial insurance provider for
+  small businesses, offering Business Owners Policy (BOP), General Liability (GL),
+  Professional Liability (PL), and Workers' Compensation (WC). Its REST API lets
+  appointed agents and digital partners build applications, generate bindable quotes,
+  bind and issue policies, look up industry/NAICS classifications, retrieve policy
+  documents, and subscribe to webhooks for an embedded small-business insurance
+  experience.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Insurance
+- Commercial Insurance
+- Small Business
+- Embedded Insurance
+- Insurtech
+created: '2026-06-25'
+modified: '2026-06-25'
+specificationVersion: '0.19'
+apis:
+- aid: coterie:coterie-quotes-api
+  name: Coterie Quotes API
+  tags:
+  - Quotes
+  - Bindable Quote
+  - Underwriting
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.coterieinsurance.com/
+  baseURL: https://api.coterieinsurance.com/v1
+  properties:
+  - url: https://docs.coterieinsurance.com/
+    type: Documentation
+  - url: openapi/coterie-openapi.yml
+    type: OpenAPI
+  - url: collections/coterie.postman_collection.json
+    type: PostmanCollection
+  - url: collections/coterie.opencollection.json
+    type: OpenCollection
+  description: Generates rated, bindable quotes for one or more lines of business
+    (BOP, GL, PL, WC) and answers underwriting questions. Quotes are immutable and
+    tied to an application; only "Ready to Bind" quotes guarantee pricing accuracy.
+- aid: coterie:coterie-policies-api
+  name: Coterie Policies API
+  tags:
+  - Policies
+  - Bind
+  - Issue
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.coterieinsurance.com/
+  baseURL: https://api.coterieinsurance.com/v1
+  properties:
+  - url: https://docs.coterieinsurance.com/
+    type: Documentation
+  - url: openapi/coterie-openapi.yml
+    type: OpenAPI
+  - url: collections/coterie.postman_collection.json
+    type: PostmanCollection
+  - url: collections/coterie.opencollection.json
+    type: OpenCollection
+  description: Binds an existing bindable quote into an active policy and issues
+    coverage, including binding via Stripe payment token. Returns policy numbers and
+    status for BOP, GL, PL, and WC lines of business.
+- aid: coterie:coterie-applications-api
+  name: Coterie Applications API
+  tags:
+  - Applications
+  - Account
+  - Insured
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.coterieinsurance.com/
+  baseURL: https://api.coterieinsurance.com/v1
+  properties:
+  - url: https://docs.coterieinsurance.com/
+    type: Documentation
+  - url: openapi/coterie-openapi.yml
+    type: OpenAPI
+  - url: collections/coterie.postman_collection.json
+    type: PostmanCollection
+  - url: collections/coterie.opencollection.json
+    type: OpenCollection
+  description: Creates and retrieves commercial applications describing the insured
+    business. Applications hold a 1:Many relationship with quotes and policies and
+    remain stable while quotes change over time.
+- aid: coterie:coterie-industry-naics-api
+  name: Coterie Industry / NAICS API
+  tags:
+  - Industry
+  - NAICS
+  - Classification
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.coterieinsurance.com/
+  baseURL: https://api.coterieinsurance.com/v1
+  properties:
+  - url: https://docs.coterieinsurance.com/
+    type: Documentation
+  - url: openapi/coterie-openapi.yml
+    type: OpenAPI
+  - url: collections/coterie.postman_collection.json
+    type: PostmanCollection
+  - url: collections/coterie.opencollection.json
+    type: OpenCollection
+  description: Resolves a business description to an industry classification,
+    returning the IndustryId and AK Hash (NAICS combined with a description MD5 hash)
+    required when submitting applications and quotes.
+- aid: coterie:coterie-documents-api
+  name: Coterie Documents API
+  tags:
+  - Documents
+  - Policy Documents
+  - PDF
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.coterieinsurance.com/
+  baseURL: https://api.coterieinsurance.com/v1
+  properties:
+  - url: https://docs.coterieinsurance.com/
+    type: Documentation
+  - url: openapi/coterie-openapi.yml
+    type: OpenAPI
+  - url: collections/coterie.postman_collection.json
+    type: PostmanCollection
+  - url: collections/coterie.opencollection.json
+    type: OpenCollection
+  description: Retrieves policy documents and proposals generated for a quote or an
+    issued policy, including the documentation delivered to the policyholder on
+    successful policy issuance.
+- aid: coterie:coterie-webhooks-api
+  name: Coterie Webhooks API
+  tags:
+  - Webhooks
+  - Notifications
+  - Events
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.coterieinsurance.com/
+  baseURL: https://api.coterieinsurance.com/v1
+  properties:
+  - url: https://docs.coterieinsurance.com/
+    type: Documentation
+  - url: openapi/coterie-openapi.yml
+    type: OpenAPI
+  - url: collections/coterie.postman_collection.json
+    type: PostmanCollection
+  - url: collections/coterie.opencollection.json
+    type: OpenCollection
+  description: Manages webhook subscriptions that notify partner systems of policy
+    lifecycle events, including issuance, cancelation, and updated premium
+    information delivered via the policy webhook.
+common:
+- type: GitHubOrganization
+  url: https://github.com/CoterieInsure
+- type: LinkedIn
+  url: https://www.linkedin.com/company/coterieinsurance
+- type: Website
+  url: https://coterieinsurance.com/
+- type: Documentation
+  url: https://docs.coterieinsurance.com/
+- type: Plans
+  url: plans/coterie-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/coterie-rate-limits.yml
+- type: FinOps
+  url: finops/coterie-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

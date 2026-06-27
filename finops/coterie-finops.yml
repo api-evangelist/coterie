@@ -1,0 +1,101 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Coterie Insurance
+providerId: coterie
+created: '2026-06-25'
+modified: '2026-06-25'
+reconciled: false
+tags:
+- Insurance
+- Commercial Insurance
+- Small Business
+- Embedded Insurance
+- Insurtech
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of a Coterie API integration. Unlike usage-metered API products,
+  Coterie does not bill partners per API call; the economic model is insurance
+  commission on bound premium for appointed agents and digital partners, plus
+  the underlying carrier premium, taxes, and fees collected from policyholders
+  (Coterie uses Stripe for payment processing). The cost objects to track are
+  therefore bound premium, commission earned, and policy counts by line of
+  business rather than request or token spend. Monetary terms are negotiated per
+  partner and not publicly published, so figures here are not reconciled.
+notes: >-
+  Track spend and revenue at the policy and premium level. Per-partner
+  commission rates and carrier economics are set in the partner agreement;
+  verify with Coterie during reconciliation.
+sources:
+- https://docs.coterieinsurance.com/
+- https://coterieinsurance.com/partners/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Coterie Insurance
+serviceCategory: Insurance
+billingModel:
+  pricingCategory: Commission-Based
+  billingFrequency: Per Policy
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: Coterie Commercial Insurance API
+  ServiceCategory: Insurance
+  ProviderName: Coterie Insurance
+  PublisherName: Coterie Insurance
+  InvoiceIssuerName: Coterie Insurance
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Commission-Based
+meters:
+- name: bound_premium
+  description: Premium on policies bound through the API, by line of business (BOP, GL, PL, WC).
+  unit: currency
+  aggregation: sum
+  dimensions:
+  - account
+  - lineOfBusiness
+  - agency
+- name: commission_earned
+  description: Commission earned by the partner / agency on bound premium per negotiated terms.
+  unit: currency
+  aggregation: sum
+  dimensions:
+  - account
+  - agency
+- name: policies_bound
+  description: Count of policies bound and issued, by line of business.
+  unit: policies
+  aggregation: sum
+  dimensions:
+  - account
+  - lineOfBusiness
+- name: quotes_generated
+  description: Count of bindable quotes generated against applications.
+  unit: quotes
+  aggregation: sum
+  dimensions:
+  - account
+  - lineOfBusiness
+principles:
+- name: Visibility
+  description: Track bound premium, policy counts, and quote-to-bind conversion per agency and line of business.
+- name: Allocation
+  description: Attribute premium and commission to producers and agencies via producer / agency identifiers.
+- name: Optimization
+  description: Improve quote-to-bind conversion and select appropriate lines of business; reduce abandoned quotes.
+- name: Accountability
+  description: Reconcile commission statements against bound-premium reporting per partner agreement.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,70 @@
+aid: coterie
+name: Coterie Insurance
+review:
+  question: Does Coterie Insurance expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-25'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    Coterie's only documented asynchronous surface is outbound HTTP webhooks
+    (policy lifecycle events such as issuance, cancelation, and updated
+    premium). Outbound webhooks are HTTP callbacks, not a WebSocket or SSE
+    stream, and no AsyncAPI document was authored at this time.
+findings:
+  summary: |
+    Coterie Insurance does not publish a documented public WebSocket API. The
+    Coterie Commercial Insurance API is a REST (HTTPS) API served from
+    https://api.coterieinsurance.com/v1 (sandbox
+    https://api-sandbox.coterieinsurance.com/v1). Asynchronous notification is
+    provided via outbound HTTP webhooks (policy webhook) that POST event
+    payloads to a partner-registered URL; this is a one-way HTTP callback
+    mechanism, not a WebSocket (ws:// or wss://) or Server-Sent Events stream.
+    No realtime bidirectional streaming endpoint is documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.coterieinsurance.com/v1
+      documented: true
+    - protocol: Webhooks
+      scheme: https
+      note: Outbound HTTP POST callbacks for policy lifecycle events. Not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Coterie's API reference or partner materials as of the review date.
+  endpointsConfirmedRest:
+    - POST   https://api.coterieinsurance.com/v1/commercial/applications
+    - GET    https://api.coterieinsurance.com/v1/commercial/applications/{applicationId}
+    - PUT    https://api.coterieinsurance.com/v1/commercial/applications/{applicationId}
+    - POST   https://api.coterieinsurance.com/v1/commercial/quotes
+    - GET    https://api.coterieinsurance.com/v1/commercial/quotes/{quoteId}
+    - GET    https://api.coterieinsurance.com/v1/commercial/quotes/{quoteId}/underwriting-questions
+    - POST   https://api.coterieinsurance.com/v1/commercial/policies
+    - GET    https://api.coterieinsurance.com/v1/commercial/policies/{policyId}
+    - GET    https://api.coterieinsurance.com/v1/commercial/policies/{policyId}/documents
+    - GET    https://api.coterieinsurance.com/v1/industry-classifications
+    - GET    https://api.coterieinsurance.com/v1/webhooks
+    - POST   https://api.coterieinsurance.com/v1/webhooks
+    - DELETE https://api.coterieinsurance.com/v1/webhooks/{webhookId}
+sources:
+  - url: https://docs.coterieinsurance.com/
+    type: Documentation
+    note: Commercial Insurance API reference; describes REST applications, quotes, policies, bind workflow, and webhooks.
+  - url: https://explore.coterieinsurance.com/partner-faqs
+    type: Documentation
+    note: Partner FAQ confirms API-key auth, the policy webhook for cancelation/premium updates, and Stripe-based binding. No WebSocket mentioned.
+  - url: https://coterieinsurance.com/partners/
+    type: Website
+    note: Digital partner program describing embedded small-business insurance via the API.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE protocol surface exists. The only asynchronous
+    mechanism is outbound HTTP webhooks, which are modeled as a Webhooks API in
+    apis.yml rather than as an AsyncAPI streaming document.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

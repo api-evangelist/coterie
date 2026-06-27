@@ -1,0 +1,226 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coterie Commercial Insurance API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a commercial application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.coterieinsurance.com/v1/commercial/applications",
+            "body": {
+              "type": "json",
+              "data": "{\"businessName\":\"<string>\",\"industryId\":0,\"akHash\":\"<string>\"}"
+            }
+          },
+          "docs": "Create a commercial application describing the insured business."
+        },
+        {
+          "info": {
+            "name": "Retrieve a commercial application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coterieinsurance.com/v1/commercial/applications/{applicationId}"
+          },
+          "docs": "Retrieve a commercial application by id."
+        },
+        {
+          "info": {
+            "name": "Update a commercial application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.coterieinsurance.com/v1/commercial/applications/{applicationId}",
+            "body": {
+              "type": "json",
+              "data": "{\"businessName\":\"<string>\",\"industryId\":0,\"akHash\":\"<string>\"}"
+            }
+          },
+          "docs": "Update a commercial application."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Quotes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a bindable quote.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.coterieinsurance.com/v1/commercial/quotes",
+            "body": {
+              "type": "json",
+              "data": "{\"applicationId\":\"<string>\",\"endorsementPackages\":[\"BOP\",\"GL\",\"PL\",\"WC\"]}"
+            }
+          },
+          "docs": "Generate a rated, bindable quote for the requested lines of business."
+        },
+        {
+          "info": {
+            "name": "Retrieve a quote.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coterieinsurance.com/v1/commercial/quotes/{quoteId}"
+          },
+          "docs": "Retrieve a quote by id."
+        },
+        {
+          "info": {
+            "name": "List underwriting questions for a quote.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coterieinsurance.com/v1/commercial/quotes/{quoteId}/underwriting-questions"
+          },
+          "docs": "Return underwriting questions that must be answered for the quote."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bind a quote into a policy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.coterieinsurance.com/v1/commercial/policies",
+            "body": {
+              "type": "json",
+              "data": "{\"quoteId\":\"<string>\",\"agencyId\":\"<string>\",\"stripePaymentToken\":\"<string>\"}"
+            }
+          },
+          "docs": "Bind an existing bindable quote into an active, issued policy."
+        },
+        {
+          "info": {
+            "name": "Retrieve a policy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coterieinsurance.com/v1/commercial/policies/{policyId}"
+          },
+          "docs": "Retrieve a policy by id."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Industry",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search industry / NAICS classifications.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coterieinsurance.com/v1/industry-classifications?description=<string>"
+          },
+          "docs": "Resolve a business description to an IndustryId and AK Hash (NAICS + description MD5 hash)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve documents for a policy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coterieinsurance.com/v1/commercial/policies/{policyId}/documents"
+          },
+          "docs": "Return policy documents and proposals for an issued policy."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhook subscriptions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coterieinsurance.com/v1/webhooks"
+          },
+          "docs": "List webhook subscriptions."
+        },
+        {
+          "info": {
+            "name": "Create a webhook subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.coterieinsurance.com/v1/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{\"url\":\"<uri>\",\"eventType\":\"policy.issued\",\"active\":true}"
+            }
+          },
+          "docs": "Create a webhook subscription for policy lifecycle events."
+        },
+        {
+          "info": {
+            "name": "Delete a webhook subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.coterieinsurance.com/v1/webhooks/{webhookId}"
+          },
+          "docs": "Delete a webhook subscription by id."
+        }
+      ]
+    }
+  ]
+}

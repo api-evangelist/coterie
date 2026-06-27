@@ -1,0 +1,94 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Coterie Insurance
+providerId: coterie
+created: '2026-06-25'
+modified: '2026-06-25'
+reconciled: false
+tags:
+- Insurance
+- Commercial Insurance
+- Small Business
+- Embedded Insurance
+- Insurtech
+- Plans
+description: >-
+  Coterie does not sell API access on a per-call subscription basis. The API is
+  available to appointed agents and approved digital / channel partners under a
+  commercial insurance partnership. There is no documented per-request API fee;
+  partners earn commission on bound premium and Coterie earns underwriting
+  revenue on the policies sold. Coterie states there are no call-volume limits
+  for testing or production. Commission rates and partner terms are negotiated
+  individually and are not publicly published, so monetary values here are not
+  reconciled.
+notes: >-
+  API credentials (Publishable + Secret keys) for Sandbox and Production are
+  issued by an assigned Integration Manager after partner appointment. Premium,
+  taxes, and fees are determined per quote by Coterie's rating engine and the
+  underlying carrier; commission terms are set in the partner agreement. Verify
+  all terms with Coterie during reconciliation.
+sources:
+- https://docs.coterieinsurance.com/
+- https://coterieinsurance.com/partners/
+- https://explore.coterieinsurance.com/partner-faqs
+plans:
+- id: coterie-partner-appointment
+  name: Appointed Agent / Digital Partner
+  type: partner
+  description: >-
+    API access granted to appointed agents and approved digital partners. No
+    per-call API fee is documented; revenue is realized through commission on
+    bound premium and underlying carrier economics.
+  entries:
+  - label: API Access
+    name: api_access
+    type: flat
+    metric: access
+    limit: -1
+    timeFrame: year
+    geo: US
+    unit: 1
+    price: no documented per-call fee (partner appointment required)
+    userMultiplied: false
+  - label: Commission on Bound Premium
+    name: commission
+    type: usage
+    metric: premium
+    limit: -1
+    timeFrame: usage
+    geo: US
+    unit: 1
+    price: negotiated commission rate (not publicly published)
+    userMultiplied: false
+  elements:
+  - name: Applications
+  - name: Quotes
+  - name: Policies (Bind / Issue)
+  - name: Industry / NAICS Lookup
+  - name: Documents
+  - name: Webhooks
+- id: coterie-sandbox
+  name: Sandbox
+  type: free
+  description: >-
+    Free sandbox environment for partner integration and testing against
+    https://api-sandbox.coterieinsurance.com/v1 with test payment cards. No
+    call-volume limits for testing.
+  entries:
+  - label: Sandbox Access
+    name: sandbox_access
+    type: flat
+    metric: access
+    limit: -1
+    timeFrame: month
+    geo: US
+    unit: 1
+    price: free with partner credentials
+    userMultiplied: false
+  elements:
+  - name: Sandbox Quotes
+  - name: Sandbox Bind / Issue
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
