@@ -147,6 +147,8 @@ apis:
     lifecycle events, including issuance, cancelation, and updated premium
     information delivered via the policy webhook.
 common:
+- type: OAuthScopes
+  url: scopes/coterie-scopes.yml
 - type: GitHubOrganization
   url: https://github.com/CoterieInsure
 - type: LinkedIn
@@ -161,6 +163,8 @@ common:
   url: rate-limits/coterie-rate-limits.yml
 - type: FinOps
   url: finops/coterie-finops.yml
+- url: https://www.coterieinsurance.com/feed
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

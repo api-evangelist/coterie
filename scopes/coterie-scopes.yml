@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/coterie-openapi.yml
+docs: https://docs.coterieinsurance.com/#authentication-guide
+note: Coterie does not document OAuth scopes; access is controlled by partner-issued
+  Publishable and Secret API keys passed as a token in the Authorization header,
+  with certain operations requiring the Secret key
+  (https://docs.coterieinsurance.com/#authentication-guide).
+schemes:
+- name: oauth2
+  source: openapi/coterie-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.coterieinsurance.com/v1/oauth/token
+scopes: []
