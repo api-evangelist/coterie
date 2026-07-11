@@ -147,6 +147,10 @@ apis:
     lifecycle events, including issuance, cancelation, and updated premium
     information delivered via the policy webhook.
 common:
+- type: DomainSecurity
+  url: security/coterie-domain-security.yml
+- type: Authentication
+  url: authentication/coterie-authentication.yml
 - type: OAuthScopes
   url: scopes/coterie-scopes.yml
 - type: GitHubOrganization

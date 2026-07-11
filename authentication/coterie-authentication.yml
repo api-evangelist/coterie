@@ -1,0 +1,28 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/coterie-openapi.yml
+summary:
+  types:
+  - http
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Pass your Coterie API key as a Bearer token in the Authorization header. Channel
+    partners are issued a Publishable Key (client-side) and a Secret Key (server-side only);
+    some operations require the Secret Key. Partners may also authenticate via OAuth2 client-credentials
+    to obtain a Bearer access token. Producer attribution uses the token producer_{producerId}
+    form.
+  sources:
+  - openapi/coterie-openapi.yml
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.coterieinsurance.com/v1/oauth/token
+    scopes: 0
+  sources:
+  - openapi/coterie-openapi.yml
