@@ -147,6 +147,8 @@ apis:
     lifecycle events, including issuance, cancelation, and updated premium
     information delivered via the policy webhook.
 common:
+- type: AgenticAccess
+  url: agentic-access/coterie-agentic-access.yml
 - type: DomainSecurity
   url: security/coterie-domain-security.yml
 - type: Authentication
