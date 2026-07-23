@@ -1,0 +1,94 @@
+openapi: 3.0.1
+info:
+  title: Coterie Commercial Insurance Applications Webhooks API
+  description: The Coterie Commercial Insurance API lets appointed agents and digital partners establish a commercial account, create applications describing an insured small business, generate rated bindable quotes for Business Owners Policy (BOP), General Liability (GL), Professional Liability (PL), and Workers' Compensation (WC), bind and issue policies, look up industry / NAICS classifications, retrieve policy documents, and manage webhooks.
+  termsOfService: https://coterieinsurance.com/terms-of-use/
+  contact:
+    name: Coterie Insurance Partner Support
+    url: https://docs.coterieinsurance.com/
+  version: '1.0'
+servers:
+- url: https://api.coterieinsurance.com/v1
+  description: Production
+- url: https://api-sandbox.coterieinsurance.com/v1
+  description: Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Webhooks
+  description: Webhook subscription management.
+paths:
+  /webhooks:
+    get:
+      operationId: listWebhooks
+      tags:
+      - Webhooks
+      summary: List webhook subscriptions.
+      responses:
+        '200':
+          description: Webhook subscriptions returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+    post:
+      operationId: createWebhook
+      tags:
+      - Webhooks
+      summary: Create a webhook subscription.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Webhook'
+      responses:
+        '200':
+          description: Webhook subscription created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+  /webhooks/{webhookId}:
+    delete:
+      operationId: deleteWebhook
+      tags:
+      - Webhooks
+      summary: Delete a webhook subscription.
+      parameters:
+      - name: webhookId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Webhook subscription deleted.
+components:
+  schemas:
+    Webhook:
+      type: object
+      properties:
+        webhookId:
+          type: string
+        url:
+          type: string
+          format: uri
+        eventType:
+          type: string
+          description: e.g. policy.issued, policy.canceled, policy.premiumUpdated.
+        active:
+          type: boolean
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Pass your Coterie API key as a Bearer token in the Authorization header. Channel partners are issued a Publishable Key (client-side) and a Secret Key (server-side only); some operations require the Secret Key. Partners may also authenticate via OAuth2 client-credentials to obtain a Bearer access token. Producer attribution uses the token producer_{producerId} form.
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.coterieinsurance.com/v1/oauth/token
+          scopes: {}

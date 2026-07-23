@@ -1,0 +1,141 @@
+openapi: 3.0.1
+info:
+  title: Coterie Commercial Insurance Applications Quotes API
+  description: The Coterie Commercial Insurance API lets appointed agents and digital partners establish a commercial account, create applications describing an insured small business, generate rated bindable quotes for Business Owners Policy (BOP), General Liability (GL), Professional Liability (PL), and Workers' Compensation (WC), bind and issue policies, look up industry / NAICS classifications, retrieve policy documents, and manage webhooks.
+  termsOfService: https://coterieinsurance.com/terms-of-use/
+  contact:
+    name: Coterie Insurance Partner Support
+    url: https://docs.coterieinsurance.com/
+  version: '1.0'
+servers:
+- url: https://api.coterieinsurance.com/v1
+  description: Production
+- url: https://api-sandbox.coterieinsurance.com/v1
+  description: Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Quotes
+  description: Rated, bindable quotes and underwriting questions.
+paths:
+  /commercial/quotes:
+    post:
+      operationId: createQuote
+      tags:
+      - Quotes
+      summary: Create a bindable quote.
+      description: Generates a rated, bindable quote for the requested lines of business against an application. Quotes are immutable; request a new quote when application data changes.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuoteRequest'
+      responses:
+        '200':
+          description: Quote created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse'
+  /commercial/quotes/{quoteId}:
+    get:
+      operationId: getQuote
+      tags:
+      - Quotes
+      summary: Retrieve a quote.
+      parameters:
+      - $ref: '#/components/parameters/QuoteId'
+      responses:
+        '200':
+          description: Quote found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse'
+  /commercial/quotes/{quoteId}/underwriting-questions:
+    get:
+      operationId: getUnderwritingQuestions
+      tags:
+      - Quotes
+      summary: List underwriting questions for a quote.
+      description: Returns the underwriting questions that must be answered for the quote to reach a "Ready to Bind" status.
+      parameters:
+      - $ref: '#/components/parameters/QuoteId'
+      responses:
+        '200':
+          description: Underwriting questions returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UnderwritingQuestion'
+components:
+  schemas:
+    UnderwritingQuestion:
+      type: object
+      properties:
+        questionId:
+          type: string
+        prompt:
+          type: string
+        answerType:
+          type: string
+        required:
+          type: boolean
+    QuoteRequest:
+      type: object
+      properties:
+        applicationId:
+          type: string
+        endorsementPackages:
+          type: array
+          items:
+            type: string
+            enum:
+            - BOP
+            - GL
+            - PL
+            - WC
+            description: Line of business requested.
+      required:
+      - applicationId
+      - endorsementPackages
+    QuoteResponse:
+      type: object
+      properties:
+        quoteId:
+          type: string
+        applicationId:
+          type: string
+        status:
+          type: string
+          description: e.g. Draft, NeedsUnderwriting, ReadyToBind.
+        premium:
+          type: number
+        currency:
+          type: string
+          default: USD
+        endorsementPackages:
+          type: array
+          items:
+            type: string
+  parameters:
+    QuoteId:
+      name: quoteId
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Pass your Coterie API key as a Bearer token in the Authorization header. Channel partners are issued a Publishable Key (client-side) and a Secret Key (server-side only); some operations require the Secret Key. Partners may also authenticate via OAuth2 client-credentials to obtain a Bearer access token. Producer attribution uses the token producer_{producerId} form.
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.coterieinsurance.com/v1/oauth/token
+          scopes: {}

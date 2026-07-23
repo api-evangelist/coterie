@@ -1,0 +1,73 @@
+openapi: 3.0.1
+info:
+  title: Coterie Commercial Insurance Applications Industry API
+  description: The Coterie Commercial Insurance API lets appointed agents and digital partners establish a commercial account, create applications describing an insured small business, generate rated bindable quotes for Business Owners Policy (BOP), General Liability (GL), Professional Liability (PL), and Workers' Compensation (WC), bind and issue policies, look up industry / NAICS classifications, retrieve policy documents, and manage webhooks.
+  termsOfService: https://coterieinsurance.com/terms-of-use/
+  contact:
+    name: Coterie Insurance Partner Support
+    url: https://docs.coterieinsurance.com/
+  version: '1.0'
+servers:
+- url: https://api.coterieinsurance.com/v1
+  description: Production
+- url: https://api-sandbox.coterieinsurance.com/v1
+  description: Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Industry
+  description: Industry / NAICS classification lookup.
+paths:
+  /industry-classifications:
+    get:
+      operationId: searchIndustryClassifications
+      tags:
+      - Industry
+      summary: Search industry / NAICS classifications.
+      description: Resolves a business description to an industry classification, returning the IndustryId and AK Hash (NAICS combined with a description MD5 hash) required when submitting applications and quotes.
+      parameters:
+      - name: description
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Free-text business description to classify.
+      - name: naicsCode
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional NAICS code to narrow the search.
+      responses:
+        '200':
+          description: Matching industry classifications.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IndustryClassification'
+components:
+  schemas:
+    IndustryClassification:
+      type: object
+      properties:
+        industryId:
+          type: integer
+        akHash:
+          type: string
+        naicsCode:
+          type: string
+        description:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Pass your Coterie API key as a Bearer token in the Authorization header. Channel partners are issued a Publishable Key (client-side) and a Secret Key (server-side only); some operations require the Secret Key. Partners may also authenticate via OAuth2 client-credentials to obtain a Bearer access token. Producer attribution uses the token producer_{producerId} form.
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.coterieinsurance.com/v1/oauth/token
+          scopes: {}

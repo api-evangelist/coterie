@@ -1,0 +1,72 @@
+openapi: 3.0.1
+info:
+  title: Coterie Commercial Insurance Applications Documents API
+  description: The Coterie Commercial Insurance API lets appointed agents and digital partners establish a commercial account, create applications describing an insured small business, generate rated bindable quotes for Business Owners Policy (BOP), General Liability (GL), Professional Liability (PL), and Workers' Compensation (WC), bind and issue policies, look up industry / NAICS classifications, retrieve policy documents, and manage webhooks.
+  termsOfService: https://coterieinsurance.com/terms-of-use/
+  contact:
+    name: Coterie Insurance Partner Support
+    url: https://docs.coterieinsurance.com/
+  version: '1.0'
+servers:
+- url: https://api.coterieinsurance.com/v1
+  description: Production
+- url: https://api-sandbox.coterieinsurance.com/v1
+  description: Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Documents
+  description: Policy documents and proposals.
+paths:
+  /commercial/policies/{policyId}/documents:
+    get:
+      operationId: getPolicyDocuments
+      tags:
+      - Documents
+      summary: Retrieve documents for a policy.
+      description: Returns policy documents and proposals generated for an issued policy, including the documentation delivered to the policyholder on issuance.
+      parameters:
+      - $ref: '#/components/parameters/PolicyId'
+      responses:
+        '200':
+          description: Documents returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Document'
+components:
+  parameters:
+    PolicyId:
+      name: policyId
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    Document:
+      type: object
+      properties:
+        documentId:
+          type: string
+        type:
+          type: string
+          description: e.g. Proposal, PolicyDeclaration, CertificateOfInsurance.
+        url:
+          type: string
+          format: uri
+        contentType:
+          type: string
+          default: application/pdf
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Pass your Coterie API key as a Bearer token in the Authorization header. Channel partners are issued a Publishable Key (client-side) and a Secret Key (server-side only); some operations require the Secret Key. Partners may also authenticate via OAuth2 client-credentials to obtain a Bearer access token. Producer attribution uses the token producer_{producerId} form.
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.coterieinsurance.com/v1/oauth/token
+          scopes: {}
