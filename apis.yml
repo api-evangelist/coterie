@@ -9,7 +9,20 @@ description: Coterie Insurance is a technology-first commercial insurance provid
   bind and issue policies, look up industry/NAICS classifications, retrieve policy
   documents, and subscribe to webhooks for an embedded small-business insurance
   experience.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/coterie.png
 tags:
 - Insurance
 - Commercial Insurance
@@ -20,132 +33,102 @@ created: '2026-06-25'
 modified: '2026-06-25'
 specificationVersion: '0.19'
 apis:
-- aid: coterie:coterie-quotes-api
-  name: Coterie Quotes API
-  tags:
-  - Quotes
-  - Bindable Quote
-  - Underwriting
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.coterieinsurance.com/
-  baseURL: https://api.coterieinsurance.com/v1
-  properties:
-  - url: https://docs.coterieinsurance.com/
-    type: Documentation
-  - url: openapi/coterie-openapi.yml
-    type: OpenAPI
-  - url: collections/coterie.postman_collection.json
-    type: PostmanCollection
-  - url: collections/coterie.opencollection.json
-    type: OpenCollection
-  description: Generates rated, bindable quotes for one or more lines of business
-    (BOP, GL, PL, WC) and answers underwriting questions. Quotes are immutable and
-    tied to an application; only "Ready to Bind" quotes guarantee pricing accuracy.
-- aid: coterie:coterie-policies-api
-  name: Coterie Policies API
-  tags:
-  - Policies
-  - Bind
-  - Issue
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.coterieinsurance.com/
-  baseURL: https://api.coterieinsurance.com/v1
-  properties:
-  - url: https://docs.coterieinsurance.com/
-    type: Documentation
-  - url: openapi/coterie-openapi.yml
-    type: OpenAPI
-  - url: collections/coterie.postman_collection.json
-    type: PostmanCollection
-  - url: collections/coterie.opencollection.json
-    type: OpenCollection
-  description: Binds an existing bindable quote into an active policy and issues
-    coverage, including binding via Stripe payment token. Returns policy numbers and
-    status for BOP, GL, PL, and WC lines of business.
 - aid: coterie:coterie-applications-api
-  name: Coterie Applications API
+  name: Coterie Insurance Applications API
+  description: Commercial applications describing the insured business.
+  humanURL: https://docs.coterieinsurance.com/
+  baseURL: https://api.coterieinsurance.com/v1
   tags:
   - Applications
-  - Account
-  - Insured
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.coterieinsurance.com/
-  baseURL: https://api.coterieinsurance.com/v1
   properties:
-  - url: https://docs.coterieinsurance.com/
-    type: Documentation
-  - url: openapi/coterie-openapi.yml
-    type: OpenAPI
-  - url: collections/coterie.postman_collection.json
-    type: PostmanCollection
-  - url: collections/coterie.opencollection.json
-    type: OpenCollection
-  description: Creates and retrieves commercial applications describing the insured
-    business. Applications hold a 1:Many relationship with quotes and policies and
-    remain stable while quotes change over time.
-- aid: coterie:coterie-industry-naics-api
-  name: Coterie Industry / NAICS API
-  tags:
-  - Industry
-  - NAICS
-  - Classification
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.coterieinsurance.com/
-  baseURL: https://api.coterieinsurance.com/v1
-  properties:
-  - url: https://docs.coterieinsurance.com/
-    type: Documentation
-  - url: openapi/coterie-openapi.yml
-    type: OpenAPI
-  - url: collections/coterie.postman_collection.json
-    type: PostmanCollection
-  - url: collections/coterie.opencollection.json
-    type: OpenCollection
-  description: Resolves a business description to an industry classification,
-    returning the IndustryId and AK Hash (NAICS combined with a description MD5 hash)
-    required when submitting applications and quotes.
+  - type: OpenAPI
+    url: openapi/coterie-applications-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coterieinsurance.com/
+  - type: PostmanCollection
+    url: collections/coterie.postman_collection.json
+  - type: OpenCollection
+    url: collections/coterie.opencollection.json
 - aid: coterie:coterie-documents-api
-  name: Coterie Documents API
+  name: Coterie Insurance Documents API
+  description: Policy documents and proposals.
+  humanURL: https://docs.coterieinsurance.com/
+  baseURL: https://api.coterieinsurance.com/v1
   tags:
   - Documents
-  - Policy Documents
-  - PDF
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/coterie-documents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coterieinsurance.com/
+  - type: PostmanCollection
+    url: collections/coterie.postman_collection.json
+  - type: OpenCollection
+    url: collections/coterie.opencollection.json
+- aid: coterie:coterie-industry-api
+  name: Coterie Insurance Industry API
+  description: Industry / NAICS classification lookup.
   humanURL: https://docs.coterieinsurance.com/
   baseURL: https://api.coterieinsurance.com/v1
+  tags:
+  - Industry
   properties:
-  - url: https://docs.coterieinsurance.com/
-    type: Documentation
-  - url: openapi/coterie-openapi.yml
-    type: OpenAPI
-  - url: collections/coterie.postman_collection.json
-    type: PostmanCollection
-  - url: collections/coterie.opencollection.json
-    type: OpenCollection
-  description: Retrieves policy documents and proposals generated for a quote or an
-    issued policy, including the documentation delivered to the policyholder on
-    successful policy issuance.
+  - type: OpenAPI
+    url: openapi/coterie-industry-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coterieinsurance.com/
+  - type: PostmanCollection
+    url: collections/coterie.postman_collection.json
+  - type: OpenCollection
+    url: collections/coterie.opencollection.json
+- aid: coterie:coterie-policies-api
+  name: Coterie Insurance Policies API
+  description: Binding and issuing policies from bindable quotes.
+  humanURL: https://docs.coterieinsurance.com/
+  baseURL: https://api.coterieinsurance.com/v1
+  tags:
+  - Policies
+  properties:
+  - type: OpenAPI
+    url: openapi/coterie-policies-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coterieinsurance.com/
+  - type: PostmanCollection
+    url: collections/coterie.postman_collection.json
+  - type: OpenCollection
+    url: collections/coterie.opencollection.json
+- aid: coterie:coterie-quotes-api
+  name: Coterie Insurance Quotes API
+  description: Rated, bindable quotes and underwriting questions.
+  humanURL: https://docs.coterieinsurance.com/
+  baseURL: https://api.coterieinsurance.com/v1
+  tags:
+  - Quotes
+  properties:
+  - type: OpenAPI
+    url: openapi/coterie-quotes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coterieinsurance.com/
+  - type: PostmanCollection
+    url: collections/coterie.postman_collection.json
+  - type: OpenCollection
+    url: collections/coterie.opencollection.json
 - aid: coterie:coterie-webhooks-api
-  name: Coterie Webhooks API
+  name: Coterie Insurance Webhooks API
+  description: Webhook subscription management.
+  humanURL: https://docs.coterieinsurance.com/
+  baseURL: https://api.coterieinsurance.com/v1
   tags:
   - Webhooks
-  - Notifications
-  - Events
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.coterieinsurance.com/
-  baseURL: https://api.coterieinsurance.com/v1
   properties:
-  - url: https://docs.coterieinsurance.com/
-    type: Documentation
-  - url: openapi/coterie-openapi.yml
-    type: OpenAPI
-  - url: collections/coterie.postman_collection.json
-    type: PostmanCollection
-  - url: collections/coterie.opencollection.json
-    type: OpenCollection
-  description: Manages webhook subscriptions that notify partner systems of policy
-    lifecycle events, including issuance, cancelation, and updated premium
-    information delivered via the policy webhook.
+  - type: OpenAPI
+    url: openapi/coterie-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coterieinsurance.com/
+  - type: PostmanCollection
+    url: collections/coterie.postman_collection.json
+  - type: OpenCollection
+    url: collections/coterie.opencollection.json
 common:
 - type: AgenticAccess
   url: agentic-access/coterie-agentic-access.yml
