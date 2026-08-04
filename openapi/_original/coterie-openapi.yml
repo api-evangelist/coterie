@@ -1,0 +1,498 @@
+openapi: 3.0.1
+info:
+  title: Coterie Commercial Insurance API
+  description: >-
+    The Coterie Commercial Insurance API lets appointed agents and digital
+    partners establish a commercial account, create applications describing an
+    insured small business, generate rated bindable quotes for Business Owners
+    Policy (BOP), General Liability (GL), Professional Liability (PL), and
+    Workers' Compensation (WC), bind and issue policies, look up industry /
+    NAICS classifications, retrieve policy documents, and manage webhooks.
+  termsOfService: https://coterieinsurance.com/terms-of-use/
+  contact:
+    name: Coterie Insurance Partner Support
+    url: https://docs.coterieinsurance.com/
+  version: '1.0'
+servers:
+  - url: https://api.coterieinsurance.com/v1
+    description: Production
+  - url: https://api-sandbox.coterieinsurance.com/v1
+    description: Sandbox
+security:
+  - bearerAuth: []
+tags:
+  - name: Applications
+    description: Commercial applications describing the insured business.
+  - name: Quotes
+    description: Rated, bindable quotes and underwriting questions.
+  - name: Policies
+    description: Binding and issuing policies from bindable quotes.
+  - name: Industry
+    description: Industry / NAICS classification lookup.
+  - name: Documents
+    description: Policy documents and proposals.
+  - name: Webhooks
+    description: Webhook subscription management.
+paths:
+  /commercial/applications:
+    post:
+      operationId: createApplication
+      tags:
+        - Applications
+      summary: Create a commercial application.
+      description: >-
+        Creates a commercial application describing the insured business.
+        Applications have a 1:Many relationship with quotes and policies and
+        remain stable while quotes change over time.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Application'
+      responses:
+        '200':
+          description: Application created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationResponse'
+  /commercial/applications/{applicationId}:
+    get:
+      operationId: getApplication
+      tags:
+        - Applications
+      summary: Retrieve a commercial application.
+      parameters:
+        - $ref: '#/components/parameters/ApplicationId'
+      responses:
+        '200':
+          description: Application found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationResponse'
+    put:
+      operationId: updateApplication
+      tags:
+        - Applications
+      summary: Update a commercial application.
+      parameters:
+        - $ref: '#/components/parameters/ApplicationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Application'
+      responses:
+        '200':
+          description: Application updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationResponse'
+  /commercial/quotes:
+    post:
+      operationId: createQuote
+      tags:
+        - Quotes
+      summary: Create a bindable quote.
+      description: >-
+        Generates a rated, bindable quote for the requested lines of business
+        against an application. Quotes are immutable; request a new quote when
+        application data changes.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuoteRequest'
+      responses:
+        '200':
+          description: Quote created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse'
+  /commercial/quotes/{quoteId}:
+    get:
+      operationId: getQuote
+      tags:
+        - Quotes
+      summary: Retrieve a quote.
+      parameters:
+        - $ref: '#/components/parameters/QuoteId'
+      responses:
+        '200':
+          description: Quote found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse'
+  /commercial/quotes/{quoteId}/underwriting-questions:
+    get:
+      operationId: getUnderwritingQuestions
+      tags:
+        - Quotes
+      summary: List underwriting questions for a quote.
+      description: >-
+        Returns the underwriting questions that must be answered for the quote
+        to reach a "Ready to Bind" status.
+      parameters:
+        - $ref: '#/components/parameters/QuoteId'
+      responses:
+        '200':
+          description: Underwriting questions returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UnderwritingQuestion'
+  /commercial/policies:
+    post:
+      operationId: bindPolicy
+      tags:
+        - Policies
+      summary: Bind a quote into a policy.
+      description: >-
+        Binds an existing bindable quote into an active policy. Supports binding
+        with a Stripe payment token, the quote ID, and the agency ID.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BindRequest'
+      responses:
+        '200':
+          description: Policy bound and issued.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyResponse'
+  /commercial/policies/{policyId}:
+    get:
+      operationId: getPolicy
+      tags:
+        - Policies
+      summary: Retrieve a policy.
+      parameters:
+        - $ref: '#/components/parameters/PolicyId'
+      responses:
+        '200':
+          description: Policy found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyResponse'
+  /industry-classifications:
+    get:
+      operationId: searchIndustryClassifications
+      tags:
+        - Industry
+      summary: Search industry / NAICS classifications.
+      description: >-
+        Resolves a business description to an industry classification, returning
+        the IndustryId and AK Hash (NAICS combined with a description MD5 hash)
+        required when submitting applications and quotes.
+      parameters:
+        - name: description
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Free-text business description to classify.
+        - name: naicsCode
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Optional NAICS code to narrow the search.
+      responses:
+        '200':
+          description: Matching industry classifications.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IndustryClassification'
+  /commercial/policies/{policyId}/documents:
+    get:
+      operationId: getPolicyDocuments
+      tags:
+        - Documents
+      summary: Retrieve documents for a policy.
+      description: >-
+        Returns policy documents and proposals generated for an issued policy,
+        including the documentation delivered to the policyholder on issuance.
+      parameters:
+        - $ref: '#/components/parameters/PolicyId'
+      responses:
+        '200':
+          description: Documents returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Document'
+  /webhooks:
+    get:
+      operationId: listWebhooks
+      tags:
+        - Webhooks
+      summary: List webhook subscriptions.
+      responses:
+        '200':
+          description: Webhook subscriptions returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+    post:
+      operationId: createWebhook
+      tags:
+        - Webhooks
+      summary: Create a webhook subscription.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Webhook'
+      responses:
+        '200':
+          description: Webhook subscription created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+  /webhooks/{webhookId}:
+    delete:
+      operationId: deleteWebhook
+      tags:
+        - Webhooks
+      summary: Delete a webhook subscription.
+      parameters:
+        - name: webhookId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Webhook subscription deleted.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        Pass your Coterie API key as a Bearer token in the Authorization header.
+        Channel partners are issued a Publishable Key (client-side) and a Secret
+        Key (server-side only); some operations require the Secret Key. Partners
+        may also authenticate via OAuth2 client-credentials to obtain a Bearer
+        access token. Producer attribution uses the token producer_{producerId}
+        form.
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.coterieinsurance.com/v1/oauth/token
+          scopes: {}
+  parameters:
+    ApplicationId:
+      name: applicationId
+      in: path
+      required: true
+      schema:
+        type: string
+    QuoteId:
+      name: quoteId
+      in: path
+      required: true
+      schema:
+        type: string
+    PolicyId:
+      name: policyId
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    Application:
+      type: object
+      properties:
+        businessName:
+          type: string
+        contactEmail:
+          type: string
+          format: email
+        contactPhone:
+          type: string
+        mailingAddress:
+          $ref: '#/components/schemas/Address'
+        industryId:
+          type: integer
+          description: Industry identifier provided by Coterie.
+        akHash:
+          type: string
+          description: NAICS combined with the description MD5 hash.
+        grossAnnualSales:
+          type: number
+        numEmployees:
+          type: integer
+      required:
+        - businessName
+        - industryId
+        - akHash
+    ApplicationResponse:
+      allOf:
+        - $ref: '#/components/schemas/Application'
+        - type: object
+          properties:
+            applicationId:
+              type: string
+            status:
+              type: string
+    QuoteRequest:
+      type: object
+      properties:
+        applicationId:
+          type: string
+        endorsementPackages:
+          type: array
+          items:
+            type: string
+            enum:
+              - BOP
+              - GL
+              - PL
+              - WC
+            description: Line of business requested.
+      required:
+        - applicationId
+        - endorsementPackages
+    QuoteResponse:
+      type: object
+      properties:
+        quoteId:
+          type: string
+        applicationId:
+          type: string
+        status:
+          type: string
+          description: e.g. Draft, NeedsUnderwriting, ReadyToBind.
+        premium:
+          type: number
+        currency:
+          type: string
+          default: USD
+        endorsementPackages:
+          type: array
+          items:
+            type: string
+    UnderwritingQuestion:
+      type: object
+      properties:
+        questionId:
+          type: string
+        prompt:
+          type: string
+        answerType:
+          type: string
+        required:
+          type: boolean
+    BindRequest:
+      type: object
+      properties:
+        quoteId:
+          type: string
+        agencyId:
+          type: string
+        stripePaymentToken:
+          type: string
+          description: Stripe payment token used to bind via Stripe.
+        effectiveDate:
+          type: string
+          format: date
+      required:
+        - quoteId
+        - agencyId
+    PolicyResponse:
+      type: object
+      properties:
+        policyId:
+          type: string
+        policyNumber:
+          type: string
+        quoteId:
+          type: string
+        status:
+          type: string
+          description: e.g. Active, Canceled.
+        premium:
+          type: number
+        effectiveDate:
+          type: string
+          format: date
+        expirationDate:
+          type: string
+          format: date
+    IndustryClassification:
+      type: object
+      properties:
+        industryId:
+          type: integer
+        akHash:
+          type: string
+        naicsCode:
+          type: string
+        description:
+          type: string
+    Document:
+      type: object
+      properties:
+        documentId:
+          type: string
+        type:
+          type: string
+          description: e.g. Proposal, PolicyDeclaration, CertificateOfInsurance.
+        url:
+          type: string
+          format: uri
+        contentType:
+          type: string
+          default: application/pdf
+    Webhook:
+      type: object
+      properties:
+        webhookId:
+          type: string
+        url:
+          type: string
+          format: uri
+        eventType:
+          type: string
+          description: e.g. policy.issued, policy.canceled, policy.premiumUpdated.
+        active:
+          type: boolean
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+          default: US

@@ -1,0 +1,24 @@
+{
+  "provider": "coterie",
+  "sources": [
+    "coterie-applications-api-openapi.yml",
+    "coterie-documents-api-openapi.yml",
+    "coterie-industry-api-openapi.yml",
+    "coterie-policies-api-openapi.yml",
+    "coterie-quotes-api-openapi.yml",
+    "coterie-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "coterie-applications-api-openapi.yml",
+    "coterie-documents-api-openapi.yml",
+    "coterie-industry-api-openapi.yml",
+    "coterie-policies-api-openapi.yml",
+    "coterie-quotes-api-openapi.yml",
+    "coterie-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
