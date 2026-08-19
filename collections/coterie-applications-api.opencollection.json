@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coterie Commercial Insurance Applications API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a commercial application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.coterieinsurance.com/v1/commercial/applications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a commercial application describing the insured business. Applications have a 1:Many relationship with quotes and policies and remain stable while quotes change over time."
+        },
+        {
+          "info": {
+            "name": "Retrieve a commercial application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coterieinsurance.com/v1/commercial/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a commercial application."
+        },
+        {
+          "info": {
+            "name": "Update a commercial application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.coterieinsurance.com/v1/commercial/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a commercial application."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

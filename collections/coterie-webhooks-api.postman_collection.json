@@ -1,0 +1,295 @@
+{
+  "item": [
+    {
+      "id": "46864f9d-4826-439d-8d11-3aa81eb3b2d1",
+      "name": "Webhooks",
+      "description": {
+        "content": "Webhook subscription management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c6908865-8690-4087-9ba2-5c3e58c27707",
+          "name": "List webhook subscriptions.",
+          "request": {
+            "name": "List webhook subscriptions.",
+            "description": {},
+            "url": {
+              "path": [
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "24d0b329-522d-4a35-b4e4-763a55d28f4f",
+              "name": "Webhook subscriptions returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"webhookId\": \"string\",\n    \"url\": \"https://wNxanAxNPhSqRKibiuBIFqWZLb.yigwNpOG73BadwEpKru\",\n    \"eventType\": \"string\",\n    \"active\": false\n  },\n  {\n    \"webhookId\": \"string\",\n    \"url\": \"http://DtTfUcECRDSiNxREctndrSdbmowHG.hofeCD1C1,nrFFpfO9,rwlX89yMrEg6IJoWZF\",\n    \"eventType\": \"string\",\n    \"active\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7cd1a50c-673c-4bf3-b323-6877ff68ce40",
+          "name": "Create a webhook subscription.",
+          "request": {
+            "name": "Create a webhook subscription.",
+            "description": {},
+            "url": {
+              "path": [
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"webhookId\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"eventType\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ded10991-85a0-4b1f-b6f0-4f1ea522e5fe",
+              "name": "Webhook subscription created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhookId\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"eventType\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"webhookId\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"eventType\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "880b92e3-e961-441f-bc84-e427b9e7cfa0",
+          "name": "Delete a webhook subscription.",
+          "request": {
+            "name": "Delete a webhook subscription.",
+            "description": {},
+            "url": {
+              "path": [
+                "webhooks",
+                ":webhookId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "webhookId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f7849fc-eb9a-4dc4-8f8e-9080ef2c07ad",
+              "name": "Webhook subscription deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.coterieinsurance.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0a71d28a-b428-4b67-9c77-a05325affba6",
+    "name": "Coterie Commercial Insurance Applications Webhooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Coterie Commercial Insurance API lets appointed agents and digital partners establish a commercial account, create applications describing an insured small business, generate rated bindable quotes for Business Owners Policy (BOP), General Liability (GL), Professional Liability (PL), and Workers' Compensation (WC), bind and issue policies, look up industry / NAICS classifications, retrieve policy documents, and manage webhooks.\n\nContact Support:\n Name: Coterie Insurance Partner Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coterie Commercial Insurance Applications Documents API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve documents for a policy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coterieinsurance.com/v1/commercial/policies/:policyId/documents",
+            "params": [
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns policy documents and proposals generated for an issued policy, including the documentation delivered to the policyholder on issuance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

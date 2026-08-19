@@ -1,0 +1,141 @@
+{
+  "item": [
+    {
+      "id": "f0a3dce8-ae55-40f1-b9e5-da9e40dc04a7",
+      "name": "Documents",
+      "description": {
+        "content": "Policy documents and proposals.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a6fccda0-21f2-44a5-b4df-8883aff5fd46",
+          "name": "Retrieve documents for a policy.",
+          "request": {
+            "name": "Retrieve documents for a policy.",
+            "description": {
+              "content": "Returns policy documents and proposals generated for an issued policy, including the documentation delivered to the policyholder on issuance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "commercial",
+                "policies",
+                ":policyId",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policyId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bb8faf37-7d35-451c-87f7-1014f09dd9cb",
+              "name": "Documents returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "commercial",
+                    "policies",
+                    ":policyId",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"documentId\": \"string\",\n    \"type\": \"string\",\n    \"url\": \"http://ZoTwSBuHgAoyBz.wcmaguAtjms-1L9-EdJvUMeCco2ry5Wkf70KNOSmTQ0TPGRcEduGEnF,vATrAteE\",\n    \"contentType\": \"application/pdf\"\n  },\n  {\n    \"documentId\": \"string\",\n    \"type\": \"string\",\n    \"url\": \"https://bmmzRYTUIIeUSBubI.crpXIEgRYVJMNWjeNCvFOWhbX,u+KNh01+NeX0,qZlpPtCPgAliZ2A-iPTVQaYD\",\n    \"contentType\": \"application/pdf\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.coterieinsurance.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "109323c9-e43b-4b97-bf7d-fe2f056fd276",
+    "name": "Coterie Commercial Insurance Applications Documents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Coterie Commercial Insurance API lets appointed agents and digital partners establish a commercial account, create applications describing an insured small business, generate rated bindable quotes for Business Owners Policy (BOP), General Liability (GL), Professional Liability (PL), and Workers' Compensation (WC), bind and issue policies, look up industry / NAICS classifications, retrieve policy documents, and manage webhooks.\n\nContact Support:\n Name: Coterie Insurance Partner Support",
+      "type": "text/plain"
+    }
+  }
+}

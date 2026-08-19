@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coterie Commercial Insurance Applications Webhooks API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhook subscriptions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coterieinsurance.com/v1/webhooks"
+          },
+          "docs": "List webhook subscriptions."
+        },
+        {
+          "info": {
+            "name": "Create a webhook subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.coterieinsurance.com/v1/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a webhook subscription."
+        },
+        {
+          "info": {
+            "name": "Delete a webhook subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.coterieinsurance.com/v1/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a webhook subscription."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

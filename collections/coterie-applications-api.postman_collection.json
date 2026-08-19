@@ -1,0 +1,353 @@
+{
+  "item": [
+    {
+      "id": "42607e80-fca7-417d-9049-e1a86d7dc95b",
+      "name": "Applications",
+      "description": {
+        "content": "Commercial applications describing the insured business.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c999452a-423b-4c9e-a5da-1cdba618dafc",
+          "name": "Create a commercial application.",
+          "request": {
+            "name": "Create a commercial application.",
+            "description": {
+              "content": "Creates a commercial application describing the insured business. Applications have a 1:Many relationship with quotes and policies and remain stable while quotes change over time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "commercial",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"businessName\": \"<string>\",\n  \"industryId\": \"<integer>\",\n  \"akHash\": \"<string>\",\n  \"contactEmail\": \"<email>\",\n  \"contactPhone\": \"<string>\",\n  \"mailingAddress\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"US\"\n  },\n  \"grossAnnualSales\": \"<number>\",\n  \"numEmployees\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ff6cb636-8f6e-4602-99f3-76fc8f73479e",
+              "name": "Application created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "commercial",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessName\": \"<string>\",\n  \"industryId\": \"<integer>\",\n  \"akHash\": \"<string>\",\n  \"contactEmail\": \"<email>\",\n  \"contactPhone\": \"<string>\",\n  \"mailingAddress\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"US\"\n  },\n  \"grossAnnualSales\": \"<number>\",\n  \"numEmployees\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"businessName\": \"<string>\",\n  \"industryId\": \"<integer>\",\n  \"akHash\": \"<string>\",\n  \"contactEmail\": \"<email>\",\n  \"contactPhone\": \"<string>\",\n  \"mailingAddress\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"US\"\n  },\n  \"grossAnnualSales\": \"<number>\",\n  \"numEmployees\": \"<integer>\",\n  \"applicationId\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a65f9f8-d51f-4893-ab3a-abbd3001c0cc",
+          "name": "Retrieve a commercial application.",
+          "request": {
+            "name": "Retrieve a commercial application.",
+            "description": {},
+            "url": {
+              "path": [
+                "commercial",
+                "applications",
+                ":applicationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13d2a681-755d-41eb-927a-2fe85327afcd",
+              "name": "Application found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "commercial",
+                    "applications",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"businessName\": \"<string>\",\n  \"industryId\": \"<integer>\",\n  \"akHash\": \"<string>\",\n  \"contactEmail\": \"<email>\",\n  \"contactPhone\": \"<string>\",\n  \"mailingAddress\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"US\"\n  },\n  \"grossAnnualSales\": \"<number>\",\n  \"numEmployees\": \"<integer>\",\n  \"applicationId\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30840d3b-1055-4776-bbd0-44e7a09b04cc",
+          "name": "Update a commercial application.",
+          "request": {
+            "name": "Update a commercial application.",
+            "description": {},
+            "url": {
+              "path": [
+                "commercial",
+                "applications",
+                ":applicationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"businessName\": \"<string>\",\n  \"industryId\": \"<integer>\",\n  \"akHash\": \"<string>\",\n  \"contactEmail\": \"<email>\",\n  \"contactPhone\": \"<string>\",\n  \"mailingAddress\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"US\"\n  },\n  \"grossAnnualSales\": \"<number>\",\n  \"numEmployees\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "30f86c04-16a4-41fc-9aba-4b605d6cccfd",
+              "name": "Application updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "commercial",
+                    "applications",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessName\": \"<string>\",\n  \"industryId\": \"<integer>\",\n  \"akHash\": \"<string>\",\n  \"contactEmail\": \"<email>\",\n  \"contactPhone\": \"<string>\",\n  \"mailingAddress\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"US\"\n  },\n  \"grossAnnualSales\": \"<number>\",\n  \"numEmployees\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"businessName\": \"<string>\",\n  \"industryId\": \"<integer>\",\n  \"akHash\": \"<string>\",\n  \"contactEmail\": \"<email>\",\n  \"contactPhone\": \"<string>\",\n  \"mailingAddress\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"US\"\n  },\n  \"grossAnnualSales\": \"<number>\",\n  \"numEmployees\": \"<integer>\",\n  \"applicationId\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.coterieinsurance.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d580d615-eb57-498c-9b6b-3865e2c3c754",
+    "name": "Coterie Commercial Insurance Applications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Coterie Commercial Insurance API lets appointed agents and digital partners establish a commercial account, create applications describing an insured small business, generate rated bindable quotes for Business Owners Policy (BOP), General Liability (GL), Professional Liability (PL), and Workers' Compensation (WC), bind and issue policies, look up industry / NAICS classifications, retrieve policy documents, and manage webhooks.\n\nContact Support:\n Name: Coterie Insurance Partner Support",
+      "type": "text/plain"
+    }
+  }
+}

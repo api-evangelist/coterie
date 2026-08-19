@@ -1,0 +1,237 @@
+{
+  "item": [
+    {
+      "id": "d4f9ee24-d2d7-40e9-a938-b6a3ed6ed81d",
+      "name": "Policies",
+      "description": {
+        "content": "Binding and issuing policies from bindable quotes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1a80ef30-f5ea-46f9-b1f0-dd13ae9ec4d5",
+          "name": "Bind a quote into a policy.",
+          "request": {
+            "name": "Bind a quote into a policy.",
+            "description": {
+              "content": "Binds an existing bindable quote into an active policy. Supports binding with a Stripe payment token, the quote ID, and the agency ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "commercial",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quoteId\": \"<string>\",\n  \"agencyId\": \"<string>\",\n  \"stripePaymentToken\": \"<string>\",\n  \"effectiveDate\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "356b7b80-1aaa-4d82-9db5-5827dde9b5e5",
+              "name": "Policy bound and issued.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "commercial",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quoteId\": \"<string>\",\n  \"agencyId\": \"<string>\",\n  \"stripePaymentToken\": \"<string>\",\n  \"effectiveDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policyId\": \"string\",\n  \"policyNumber\": \"string\",\n  \"quoteId\": \"string\",\n  \"status\": \"string\",\n  \"premium\": 1092.7154263356242,\n  \"effectiveDate\": \"1956-06-30\",\n  \"expirationDate\": \"2018-04-17\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "15888100-aa81-4ab8-8b43-ff46a9156a12",
+          "name": "Retrieve a policy.",
+          "request": {
+            "name": "Retrieve a policy.",
+            "description": {},
+            "url": {
+              "path": [
+                "commercial",
+                "policies",
+                ":policyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policyId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d02837cc-c39c-4e7e-9010-fe19a63ff482",
+              "name": "Policy found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "commercial",
+                    "policies",
+                    ":policyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policyId\": \"string\",\n  \"policyNumber\": \"string\",\n  \"quoteId\": \"string\",\n  \"status\": \"string\",\n  \"premium\": 1092.7154263356242,\n  \"effectiveDate\": \"1956-06-30\",\n  \"expirationDate\": \"2018-04-17\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.coterieinsurance.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "eacd6464-cd94-4655-b70d-a62bbdfd957a",
+    "name": "Coterie Commercial Insurance Applications Policies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Coterie Commercial Insurance API lets appointed agents and digital partners establish a commercial account, create applications describing an insured small business, generate rated bindable quotes for Business Owners Policy (BOP), General Liability (GL), Professional Liability (PL), and Workers' Compensation (WC), bind and issue policies, look up industry / NAICS classifications, retrieve policy documents, and manage webhooks.\n\nContact Support:\n Name: Coterie Insurance Partner Support",
+      "type": "text/plain"
+    }
+  }
+}

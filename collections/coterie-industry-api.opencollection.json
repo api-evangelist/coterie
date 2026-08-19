@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coterie Commercial Insurance Applications Industry API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Industry",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search industry / NAICS classifications.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coterieinsurance.com/v1/industry-classifications",
+            "params": [
+              {
+                "name": "description",
+                "value": "",
+                "type": "query",
+                "description": "Free-text business description to classify."
+              },
+              {
+                "name": "naicsCode",
+                "value": "",
+                "type": "query",
+                "description": "Optional NAICS code to narrow the search."
+              }
+            ]
+          },
+          "docs": "Resolves a business description to an industry classification, returning the IndustryId and AK Hash (NAICS combined with a description MD5 hash) required when submitting applications and quotes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

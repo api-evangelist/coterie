@@ -1,0 +1,337 @@
+{
+  "item": [
+    {
+      "id": "d1057aa2-a694-44b1-9523-af909750ddc0",
+      "name": "Quotes",
+      "description": {
+        "content": "Rated, bindable quotes and underwriting questions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c5715aa9-e4b4-4c91-b54e-2000a08ed54f",
+          "name": "Create a bindable quote.",
+          "request": {
+            "name": "Create a bindable quote.",
+            "description": {
+              "content": "Generates a rated, bindable quote for the requested lines of business against an application. Quotes are immutable; request a new quote when application data changes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "commercial",
+                "quotes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"applicationId\": \"<string>\",\n  \"endorsementPackages\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ee0a7cf8-81c3-4f5d-b05f-3cc6d141f251",
+              "name": "Quote created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "commercial",
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicationId\": \"<string>\",\n  \"endorsementPackages\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"quoteId\": \"string\",\n  \"applicationId\": \"string\",\n  \"status\": \"string\",\n  \"premium\": 4339.995254364851,\n  \"currency\": \"USD\",\n  \"endorsementPackages\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc4571db-6c71-49f8-8391-83e725da55da",
+          "name": "Retrieve a quote.",
+          "request": {
+            "name": "Retrieve a quote.",
+            "description": {},
+            "url": {
+              "path": [
+                "commercial",
+                "quotes",
+                ":quoteId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "quoteId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1743bea1-047d-4158-bf97-2222263deef6",
+              "name": "Quote found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "commercial",
+                    "quotes",
+                    ":quoteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "quoteId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"quoteId\": \"string\",\n  \"applicationId\": \"string\",\n  \"status\": \"string\",\n  \"premium\": 4688.31488343991,\n  \"currency\": \"USD\",\n  \"endorsementPackages\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef9cc518-dc1c-408b-9ef9-42bd9fa10f0b",
+          "name": "List underwriting questions for a quote.",
+          "request": {
+            "name": "List underwriting questions for a quote.",
+            "description": {
+              "content": "Returns the underwriting questions that must be answered for the quote to reach a \"Ready to Bind\" status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "commercial",
+                "quotes",
+                ":quoteId",
+                "underwriting-questions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "quoteId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0cd38c7-60d5-4c6c-9bc6-c44ab8557461",
+              "name": "Underwriting questions returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "commercial",
+                    "quotes",
+                    ":quoteId",
+                    "underwriting-questions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "quoteId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"questionId\": \"string\",\n    \"prompt\": \"string\",\n    \"answerType\": \"string\",\n    \"required\": true\n  },\n  {\n    \"questionId\": \"string\",\n    \"prompt\": \"string\",\n    \"answerType\": \"string\",\n    \"required\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.coterieinsurance.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a130c989-ead0-43e2-9b0c-01951426f0bf",
+    "name": "Coterie Commercial Insurance Applications Quotes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Coterie Commercial Insurance API lets appointed agents and digital partners establish a commercial account, create applications describing an insured small business, generate rated bindable quotes for Business Owners Policy (BOP), General Liability (GL), Professional Liability (PL), and Workers' Compensation (WC), bind and issue policies, look up industry / NAICS classifications, retrieve policy documents, and manage webhooks.\n\nContact Support:\n Name: Coterie Insurance Partner Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coterie Commercial Insurance Applications Quotes API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Quotes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a bindable quote.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.coterieinsurance.com/v1/commercial/quotes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a rated, bindable quote for the requested lines of business against an application. Quotes are immutable; request a new quote when application data changes."
+        },
+        {
+          "info": {
+            "name": "Retrieve a quote.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coterieinsurance.com/v1/commercial/quotes/:quoteId",
+            "params": [
+              {
+                "name": "quoteId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a quote."
+        },
+        {
+          "info": {
+            "name": "List underwriting questions for a quote.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coterieinsurance.com/v1/commercial/quotes/:quoteId/underwriting-questions",
+            "params": [
+              {
+                "name": "quoteId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the underwriting questions that must be answered for the quote to reach a \"Ready to Bind\" status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

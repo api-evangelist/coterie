@@ -1,0 +1,141 @@
+{
+  "item": [
+    {
+      "id": "337b7fbb-e9aa-467b-90b6-5c1cb8b2fbc6",
+      "name": "Industry",
+      "description": {
+        "content": "Industry / NAICS classification lookup.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d19e5424-ec48-42f6-8570-3c8d0b0eef29",
+          "name": "Search industry / NAICS classifications.",
+          "request": {
+            "name": "Search industry / NAICS classifications.",
+            "description": {
+              "content": "Resolves a business description to an industry classification, returning the IndustryId and AK Hash (NAICS combined with a description MD5 hash) required when submitting applications and quotes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "industry-classifications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>",
+                  "description": "(Required) Free-text business description to classify."
+                },
+                {
+                  "disabled": false,
+                  "key": "naicsCode",
+                  "value": "<string>",
+                  "description": "Optional NAICS code to narrow the search."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ecbdfb78-01d8-4b6b-83cb-18d4a50aeb56",
+              "name": "Matching industry classifications.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "industry-classifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "naicsCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"industryId\": 5436,\n    \"akHash\": \"string\",\n    \"naicsCode\": \"string\",\n    \"description\": \"string\"\n  },\n  {\n    \"industryId\": 8971,\n    \"akHash\": \"string\",\n    \"naicsCode\": \"string\",\n    \"description\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.coterieinsurance.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f030cd3a-7c33-45d2-a973-5ac3e06c16c4",
+    "name": "Coterie Commercial Insurance Applications Industry API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Coterie Commercial Insurance API lets appointed agents and digital partners establish a commercial account, create applications describing an insured small business, generate rated bindable quotes for Business Owners Policy (BOP), General Liability (GL), Professional Liability (PL), and Workers' Compensation (WC), bind and issue policies, look up industry / NAICS classifications, retrieve policy documents, and manage webhooks.\n\nContact Support:\n Name: Coterie Insurance Partner Support",
+      "type": "text/plain"
+    }
+  }
+}

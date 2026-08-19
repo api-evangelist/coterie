@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coterie Commercial Insurance Applications Policies API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bind a quote into a policy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.coterieinsurance.com/v1/commercial/policies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Binds an existing bindable quote into an active policy. Supports binding with a Stripe payment token, the quote ID, and the agency ID."
+        },
+        {
+          "info": {
+            "name": "Retrieve a policy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coterieinsurance.com/v1/commercial/policies/:policyId",
+            "params": [
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a policy."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
