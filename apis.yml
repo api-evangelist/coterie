@@ -39,6 +39,8 @@ apis:
   humanURL: https://docs.coterieinsurance.com/
   baseURL: https://api.coterieinsurance.com/v1
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
@@ -119,6 +121,8 @@ apis:
   humanURL: https://docs.coterieinsurance.com/
   baseURL: https://api.coterieinsurance.com/v1
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
