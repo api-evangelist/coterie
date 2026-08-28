@@ -9,6 +9,18 @@ description: Coterie Insurance is a technology-first commercial insurance provid
   bind and issue policies, look up industry/NAICS classifications, retrieve policy
   documents, and subscribe to webhooks for an embedded small-business insurance
   experience.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: self-serve
