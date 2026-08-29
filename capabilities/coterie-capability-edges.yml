@@ -1,0 +1,47 @@
+slug: coterie
+provider: Coterie Insurance
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Insurance
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Documents
+  spec_file: coterie-documents-api-openapi.yml
+  capability_id: BC-2140.50
+  capability_id_l1: BC-2140
+  capability_name: Policy Document & Records Management
+  confidence: 0.85
+  evidence: GET /commercial/policies/{policyId}/documents getPolicyDocuments Retrieve documents for a
+    policy
+  reason: Retrieval of documents attached to an issued insurance policy — policy document and records
+    management within policy administration.
+- tag: Policies
+  spec_file: coterie-policies-api-openapi.yml
+  capability_id: BC-2140.10
+  capability_id_l1: BC-2140
+  capability_name: Policy Issuance Management
+  confidence: 0.8
+  evidence: POST /commercial/policies bindPolicy 'Bind a quote into a policy'; GET /commercial/policies/{policyId}
+    getPolicy 'Retrieve a policy' (schemas PolicyResponse, BindRequest)
+  reason: Operations convert a bound quote into an issued in-force commercial policy contract and retrieve
+    it — policy issuance/administration. Slight ambiguity with underwriting binding authority (BC-2130.40),
+    hence 0.8.
+- tag: Quotes
+  spec_file: coterie-quotes-api-openapi.yml
+  capability_id: BC-2110.60
+  capability_id_l1: BC-2110
+  capability_name: Quote & Submission Management
+  confidence: 0.8
+  evidence: POST /commercial/quotes createQuote 'Create a bindable quote'; GET /commercial/quotes/{quoteId}/underwriting-questions
+    'List underwriting questions for a quote'
+  reason: Appointed agents/digital partners submit business data and receive rated bindable quotes — submission
+    intake and quote generation feeding bind. Underwriting-question retrieval adds some overlap with underwriting
+    risk intake, so 0.8.

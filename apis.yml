@@ -146,6 +146,9 @@ apis:
   - type: OpenCollection
     url: collections/coterie.opencollection.json
 common:
+- type: CapabilityMap
+  url: capabilities/coterie-capability-edges.yml
+  name: Coterie Insurance Business Capability Map
 - type: AgenticAccess
   url: agentic-access/coterie-agentic-access.yml
 - type: DomainSecurity
