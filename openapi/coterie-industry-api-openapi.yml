@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coterie Commercial Insurance Applications Industry API
+  title: Coterie Commercial Insurance Industry API
   description: The Coterie Commercial Insurance API lets appointed agents and digital partners establish a commercial account, create applications describing an insured small business, generate rated bindable quotes for Business Owners Policy (BOP), General Liability (GL), Professional Liability (PL), and Workers' Compensation (WC), bind and issue policies, look up industry / NAICS classifications, retrieve policy documents, and manage webhooks.
   termsOfService: https://coterieinsurance.com/terms-of-use/
   contact:
@@ -23,7 +23,7 @@ paths:
       operationId: searchIndustryClassifications
       tags:
       - Industry
-      summary: Search industry / NAICS classifications.
+      summary: Search industry / NAICS classifications
       description: Resolves a business description to an industry classification, returning the IndustryId and AK Hash (NAICS combined with a description MD5 hash) required when submitting applications and quotes.
       parameters:
       - name: description

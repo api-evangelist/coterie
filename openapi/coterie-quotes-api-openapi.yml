@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coterie Commercial Insurance Applications Quotes API
+  title: Coterie Commercial Insurance Quotes API
   description: The Coterie Commercial Insurance API lets appointed agents and digital partners establish a commercial account, create applications describing an insured small business, generate rated bindable quotes for Business Owners Policy (BOP), General Liability (GL), Professional Liability (PL), and Workers' Compensation (WC), bind and issue policies, look up industry / NAICS classifications, retrieve policy documents, and manage webhooks.
   termsOfService: https://coterieinsurance.com/terms-of-use/
   contact:
@@ -23,7 +23,7 @@ paths:
       operationId: createQuote
       tags:
       - Quotes
-      summary: Create a bindable quote.
+      summary: Create a bindable quote
       description: Generates a rated, bindable quote for the requested lines of business against an application. Quotes are immutable; request a new quote when application data changes.
       requestBody:
         required: true
@@ -43,7 +43,7 @@ paths:
       operationId: getQuote
       tags:
       - Quotes
-      summary: Retrieve a quote.
+      summary: Retrieve a quote
       parameters:
       - $ref: '#/components/parameters/QuoteId'
       responses:
@@ -58,7 +58,7 @@ paths:
       operationId: getUnderwritingQuestions
       tags:
       - Quotes
-      summary: List underwriting questions for a quote.
+      summary: List underwriting questions for a quote
       description: Returns the underwriting questions that must be answered for the quote to reach a "Ready to Bind" status.
       parameters:
       - $ref: '#/components/parameters/QuoteId'
@@ -72,7 +72,33 @@ paths:
                 items:
                   $ref: '#/components/schemas/UnderwritingQuestion'
 components:
+  parameters:
+    QuoteId:
+      name: quoteId
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
+    QuoteResponse:
+      type: object
+      properties:
+        quoteId:
+          type: string
+        applicationId:
+          type: string
+        status:
+          type: string
+          description: e.g. Draft, NeedsUnderwriting, ReadyToBind.
+        premium:
+          type: number
+        currency:
+          type: string
+          default: USD
+        endorsementPackages:
+          type: array
+          items:
+            type: string
     UnderwritingQuestion:
       type: object
       properties:
@@ -102,32 +128,6 @@ components:
       required:
       - applicationId
       - endorsementPackages
-    QuoteResponse:
-      type: object
-      properties:
-        quoteId:
-          type: string
-        applicationId:
-          type: string
-        status:
-          type: string
-          description: e.g. Draft, NeedsUnderwriting, ReadyToBind.
-        premium:
-          type: number
-        currency:
-          type: string
-          default: USD
-        endorsementPackages:
-          type: array
-          items:
-            type: string
-  parameters:
-    QuoteId:
-      name: quoteId
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

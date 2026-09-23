@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coterie Commercial Insurance Applications Documents API
+  title: Coterie Commercial Insurance Documents API
   description: The Coterie Commercial Insurance API lets appointed agents and digital partners establish a commercial account, create applications describing an insured small business, generate rated bindable quotes for Business Owners Policy (BOP), General Liability (GL), Professional Liability (PL), and Workers' Compensation (WC), bind and issue policies, look up industry / NAICS classifications, retrieve policy documents, and manage webhooks.
   termsOfService: https://coterieinsurance.com/terms-of-use/
   contact:
@@ -23,7 +23,7 @@ paths:
       operationId: getPolicyDocuments
       tags:
       - Documents
-      summary: Retrieve documents for a policy.
+      summary: Retrieve documents for a policy
       description: Returns policy documents and proposals generated for an issued policy, including the documentation delivered to the policyholder on issuance.
       parameters:
       - $ref: '#/components/parameters/PolicyId'

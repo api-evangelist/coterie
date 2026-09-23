@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coterie Commercial Insurance Applications Webhooks API
+  title: Coterie Commercial Insurance Webhooks API
   description: The Coterie Commercial Insurance API lets appointed agents and digital partners establish a commercial account, create applications describing an insured small business, generate rated bindable quotes for Business Owners Policy (BOP), General Liability (GL), Professional Liability (PL), and Workers' Compensation (WC), bind and issue policies, look up industry / NAICS classifications, retrieve policy documents, and manage webhooks.
   termsOfService: https://coterieinsurance.com/terms-of-use/
   contact:
@@ -23,7 +23,7 @@ paths:
       operationId: listWebhooks
       tags:
       - Webhooks
-      summary: List webhook subscriptions.
+      summary: List webhook subscriptions
       responses:
         '200':
           description: Webhook subscriptions returned.
@@ -37,7 +37,7 @@ paths:
       operationId: createWebhook
       tags:
       - Webhooks
-      summary: Create a webhook subscription.
+      summary: Create a webhook subscription
       requestBody:
         required: true
         content:
@@ -56,7 +56,7 @@ paths:
       operationId: deleteWebhook
       tags:
       - Webhooks
-      summary: Delete a webhook subscription.
+      summary: Delete a webhook subscription
       parameters:
       - name: webhookId
         in: path

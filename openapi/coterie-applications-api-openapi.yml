@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Coterie Commercial Insurance Applications API
   description: The Coterie Commercial Insurance API lets appointed agents and digital partners establish a commercial account, create applications describing an insured small business, generate rated bindable quotes for Business Owners Policy (BOP), General Liability (GL), Professional Liability (PL), and Workers' Compensation (WC), bind and issue policies, look up industry / NAICS classifications, retrieve policy documents, and manage webhooks.
@@ -23,7 +23,7 @@ paths:
       operationId: createApplication
       tags:
       - Applications
-      summary: Create a commercial application.
+      summary: Create a commercial application
       description: Creates a commercial application describing the insured business. Applications have a 1:Many relationship with quotes and policies and remain stable while quotes change over time.
       requestBody:
         required: true
@@ -43,7 +43,7 @@ paths:
       operationId: getApplication
       tags:
       - Applications
-      summary: Retrieve a commercial application.
+      summary: Retrieve a commercial application
       parameters:
       - $ref: '#/components/parameters/ApplicationId'
       responses:
@@ -57,7 +57,7 @@ paths:
       operationId: updateApplication
       tags:
       - Applications
-      summary: Update a commercial application.
+      summary: Update a commercial application
       parameters:
       - $ref: '#/components/parameters/ApplicationId'
       requestBody:
@@ -74,23 +74,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApplicationResponse'
 components:
-  parameters:
-    ApplicationId:
-      name: applicationId
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
-    ApplicationResponse:
-      allOf:
-      - $ref: '#/components/schemas/Application'
-      - type: object
-        properties:
-          applicationId:
-            type: string
-          status:
-            type: string
     Address:
       type: object
       properties:
@@ -105,6 +89,15 @@ components:
         country:
           type: string
           default: US
+    ApplicationResponse:
+      allOf:
+      - $ref: '#/components/schemas/Application'
+      - type: object
+        properties:
+          applicationId:
+            type: string
+          status:
+            type: string
     Application:
       type: object
       properties:
@@ -131,6 +124,13 @@ components:
       - businessName
       - industryId
       - akHash
+  parameters:
+    ApplicationId:
+      name: applicationId
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
