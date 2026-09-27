@@ -72,14 +72,25 @@ paths:
                 items:
                   $ref: '#/components/schemas/UnderwritingQuestion'
 components:
-  parameters:
-    QuoteId:
-      name: quoteId
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
+    QuoteRequest:
+      type: object
+      properties:
+        applicationId:
+          type: string
+        endorsementPackages:
+          type: array
+          items:
+            type: string
+            enum:
+            - BOP
+            - GL
+            - PL
+            - WC
+            description: Line of business requested.
+      required:
+      - applicationId
+      - endorsementPackages
     QuoteResponse:
       type: object
       properties:
@@ -110,24 +121,13 @@ components:
           type: string
         required:
           type: boolean
-    QuoteRequest:
-      type: object
-      properties:
-        applicationId:
-          type: string
-        endorsementPackages:
-          type: array
-          items:
-            type: string
-            enum:
-            - BOP
-            - GL
-            - PL
-            - WC
-            description: Line of business requested.
-      required:
-      - applicationId
-      - endorsementPackages
+  parameters:
+    QuoteId:
+      name: quoteId
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

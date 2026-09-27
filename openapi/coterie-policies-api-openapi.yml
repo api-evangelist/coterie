@@ -54,13 +54,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/PolicyResponse'
 components:
-  parameters:
-    PolicyId:
-      name: policyId
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
     BindRequest:
       type: object
@@ -98,6 +91,13 @@ components:
         expirationDate:
           type: string
           format: date
+  parameters:
+    PolicyId:
+      name: policyId
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
