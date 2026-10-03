@@ -73,24 +73,17 @@ paths:
                   $ref: '#/components/schemas/UnderwritingQuestion'
 components:
   schemas:
-    QuoteRequest:
+    UnderwritingQuestion:
       type: object
       properties:
-        applicationId:
+        questionId:
           type: string
-        endorsementPackages:
-          type: array
-          items:
-            type: string
-            enum:
-            - BOP
-            - GL
-            - PL
-            - WC
-            description: Line of business requested.
-      required:
-      - applicationId
-      - endorsementPackages
+        prompt:
+          type: string
+        answerType:
+          type: string
+        required:
+          type: boolean
     QuoteResponse:
       type: object
       properties:
@@ -110,17 +103,24 @@ components:
           type: array
           items:
             type: string
-    UnderwritingQuestion:
+    QuoteRequest:
       type: object
       properties:
-        questionId:
+        applicationId:
           type: string
-        prompt:
-          type: string
-        answerType:
-          type: string
-        required:
-          type: boolean
+        endorsementPackages:
+          type: array
+          items:
+            type: string
+            enum:
+            - BOP
+            - GL
+            - PL
+            - WC
+            description: Line of business requested.
+      required:
+      - applicationId
+      - endorsementPackages
   parameters:
     QuoteId:
       name: quoteId
