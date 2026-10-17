@@ -37,13 +37,6 @@ paths:
                 items:
                   $ref: '#/components/schemas/Document'
 components:
-  parameters:
-    PolicyId:
-      name: policyId
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
     Document:
       type: object
@@ -59,6 +52,13 @@ components:
         contentType:
           type: string
           default: application/pdf
+  parameters:
+    PolicyId:
+      name: policyId
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

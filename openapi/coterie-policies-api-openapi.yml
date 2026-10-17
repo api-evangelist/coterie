@@ -54,30 +54,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PolicyResponse'
 components:
-  parameters:
-    PolicyId:
-      name: policyId
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
-    BindRequest:
-      type: object
-      properties:
-        quoteId:
-          type: string
-        agencyId:
-          type: string
-        stripePaymentToken:
-          type: string
-          description: Stripe payment token used to bind via Stripe.
-        effectiveDate:
-          type: string
-          format: date
-      required:
-      - quoteId
-      - agencyId
     PolicyResponse:
       type: object
       properties:
@@ -98,6 +75,29 @@ components:
         expirationDate:
           type: string
           format: date
+    BindRequest:
+      type: object
+      properties:
+        quoteId:
+          type: string
+        agencyId:
+          type: string
+        stripePaymentToken:
+          type: string
+          description: Stripe payment token used to bind via Stripe.
+        effectiveDate:
+          type: string
+          format: date
+      required:
+      - quoteId
+      - agencyId
+  parameters:
+    PolicyId:
+      name: policyId
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
