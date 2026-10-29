@@ -1,4 +1,4 @@
-# Coterie Insurance (coterie)
+# Coterie Insurance
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,154 +66,132 @@
 
 Coterie Insurance is a technology-first commercial insurance provider for small businesses, offering Business Owners Policy (BOP), General Liability (GL), Professional Liability (PL), and Workers' Compensation (WC). Its REST API lets appointed agents and digital partners build applications, generate bindable quotes, bind and issue policies, look up industry/NAICS classifications, retrieve policy documents, and subscribe to webhooks for an embedded small-business insurance experience.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/coterie/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/coterie/refs/heads/main/apis.yml)
+**Areas:** Insurance · Commercial Insurance · Small Business · Embedded Insurance · Insurtech
 
-## Tags
+## Coterie Insurance on APIs.io
 
-- Insurance
-- Commercial Insurance
-- Small Business
-- Embedded Insurance
-- Insurtech
+Everything profiled for Coterie Insurance is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/coterie/](https://apis.io/providers/coterie/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (6)
 
-- **Created:** 2026-06-25
-- **Modified:** 2026-06-25
+- [Coterie Insurance Applications API](https://apis.io/apis/coterie/coterie-applications-api/) — Commercial applications describing the insured business.
+- [Coterie Insurance Documents API](https://apis.io/apis/coterie/coterie-documents-api/) — Policy documents and proposals.
+- [Coterie Insurance Industry API](https://apis.io/apis/coterie/coterie-industry-api/) — Industry / NAICS classification lookup.
+- [Coterie Insurance Policies API](https://apis.io/apis/coterie/coterie-policies-api/) — Binding and issuing policies from bindable quotes.
+- [Coterie Insurance Quotes API](https://apis.io/apis/coterie/coterie-quotes-api/) — Rated, bindable quotes and underwriting questions.
+- [Coterie Insurance Webhooks API](https://apis.io/apis/coterie/coterie-webhooks-api/) — Webhook subscription management.
 
-## APIs
+### Published properties
 
-### Coterie Quotes API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Generates rated, bindable quotes for one or more lines of business (BOP, GL, PL, WC) and answers underwriting questions. Quotes are immutable and tied to an application; only "Ready to Bind" quotes guarantee pricing accuracy.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.coterieinsurance.com/](https://docs.coterieinsurance.com/)
-- **Base URL:** `https://api.coterieinsurance.com/v1`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Coterie Agentic Access](https://apis.io/agentic-access/coterie/coterie-agentic-access/)
 
-- Quotes
-- Bindable Quote
-- Underwriting
+#### Collections (7)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://docs.coterieinsurance.com/)
-- [OpenAPI](openapi/coterie-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/coterie.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/coterie.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Coterie Commercial Insurance API](https://apis.io/collections/coterie/open-coterie/)
+- [Coterie Commercial Insurance Applications API](https://apis.io/collections/coterie/open-coterie-applications-api/)
+- [Coterie Commercial Insurance Applications Documents API](https://apis.io/collections/coterie/open-coterie-documents-api/)
+- [Coterie Commercial Insurance Applications Industry API](https://apis.io/collections/coterie/open-coterie-industry-api/)
+- [Coterie Commercial Insurance Applications Policies API](https://apis.io/collections/coterie/open-coterie-policies-api/)
+- [Coterie Commercial Insurance Applications Quotes API](https://apis.io/collections/coterie/open-coterie-quotes-api/)
+- [Coterie Commercial Insurance Applications Webhooks API](https://apis.io/collections/coterie/open-coterie-webhooks-api/)
 
-### Coterie Policies API
+#### Security (2)
 
-Binds an existing bindable quote into an active policy and issues coverage, including binding via Stripe payment token. Returns policy numbers and status for BOP, GL, PL, and WC lines of business.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://docs.coterieinsurance.com/](https://docs.coterieinsurance.com/)
-- **Base URL:** `https://api.coterieinsurance.com/v1`
+- [Coterie Authentication](https://apis.io/security/coterie/coterie-authentication/)
+- [Coterie Domain Security](https://apis.io/security/coterie/coterie-domain-security/)
 
-#### Tags
+#### OAuth scopes (1)
 
-- Policies
-- Bind
-- Issue
+The permissions the API asks for.
 
-#### Properties
+- [Coterie Scopes](https://apis.io/scopes/coterie/coterie-scopes/)
 
-- [Documentation](https://docs.coterieinsurance.com/)
-- [OpenAPI](openapi/coterie-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/coterie.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/coterie.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Plans and pricing (1)
 
-### Coterie Applications API
+Published plans, tiers and prices.
 
-Creates and retrieves commercial applications describing the insured business. Applications hold a 1:Many relationship with quotes and policies and remain stable while quotes change over time.
+- [Coterie Plans Pricing](https://apis.io/plans/coterie/coterie-plans-pricing/)
 
-- **Human URL:** [https://docs.coterieinsurance.com/](https://docs.coterieinsurance.com/)
-- **Base URL:** `https://api.coterieinsurance.com/v1`
+#### Rate limits (1)
 
-#### Tags
+Published request limits.
 
-- Applications
-- Account
-- Insured
+- [Coterie Rate Limits](https://apis.io/rate-limits/coterie/coterie-rate-limits/)
 
-#### Properties
+#### FinOps (1)
 
-- [Documentation](https://docs.coterieinsurance.com/)
-- [OpenAPI](openapi/coterie-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/coterie.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/coterie.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+What the API costs to run, by operation.
 
-### Coterie Industry / NAICS API
+- [Coterie Finops](https://apis.io/finops/coterie/coterie-finops/)
 
-Resolves a business description to an industry classification, returning the IndustryId and AK Hash (NAICS combined with a description MD5 hash) required when submitting applications and quotes.
+## Where to find this API
 
-- **Human URL:** [https://docs.coterieinsurance.com/](https://docs.coterieinsurance.com/)
-- **Base URL:** `https://api.coterieinsurance.com/v1`
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Tags
-
-- Industry
-- NAICS
-- Classification
-
-#### Properties
-
-- [Documentation](https://docs.coterieinsurance.com/)
-- [OpenAPI](openapi/coterie-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/coterie.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/coterie.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Coterie Documents API
-
-Retrieves policy documents and proposals generated for a quote or an issued policy, including the documentation delivered to the policyholder on successful policy issuance.
-
-- **Human URL:** [https://docs.coterieinsurance.com/](https://docs.coterieinsurance.com/)
-- **Base URL:** `https://api.coterieinsurance.com/v1`
-
-#### Tags
-
-- Documents
-- Policy Documents
-- PDF
-
-#### Properties
-
-- [Documentation](https://docs.coterieinsurance.com/)
-- [OpenAPI](openapi/coterie-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/coterie.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/coterie.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Coterie Webhooks API
-
-Manages webhook subscriptions that notify partner systems of policy lifecycle events, including issuance, cancelation, and updated premium information delivered via the policy webhook.
-
-- **Human URL:** [https://docs.coterieinsurance.com/](https://docs.coterieinsurance.com/)
-- **Base URL:** `https://api.coterieinsurance.com/v1`
-
-#### Tags
-
-- Webhooks
-- Notifications
-- Events
-
-#### Properties
-
-- [Documentation](https://docs.coterieinsurance.com/)
-- [OpenAPI](openapi/coterie-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/coterie.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/coterie.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/CoterieInsure)
-- [LinkedIn](https://www.linkedin.com/company/coterie-insurance)
 - [Website](https://coterieinsurance.com/)
 - [Documentation](https://docs.coterieinsurance.com/)
-- [Plans](plans/coterie-plans-pricing.yml)
-- [Rate Limits](rate-limits/coterie-rate-limits.yml)
-- [Fin Ops](finops/coterie-finops.yml)
+- [Blog](https://www.coterieinsurance.com/feed)
+- [GitHub](https://github.com/CoterieInsure)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 25.0** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 42.9 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 25.0 |
+| Access clarity | 5.3 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 25.4** — Insurance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/coterie/](https://apis.io/providers/coterie/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Coterie Insurance: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/coterie/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
